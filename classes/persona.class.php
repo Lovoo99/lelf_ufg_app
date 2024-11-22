@@ -129,16 +129,24 @@ if ($bandera_validacion === 0){
         "fnac" => $this->getFNac(),
         "email" => $this->getEmail(),
     );
-    $resultado = $this->conexion->run('INSERT INTO persona(nombres,apellidos,fnac,telefono,email)VALUES(:nom,:ape,:fnac,:email);'$parametros);
-    if($this->conexion)->
+   $resultado = $this->conexion->run('INSERT INTO persona(nombres,apellidos,fnac,telefono,email) VALUES (:nom,ape,:tel,:email);' ,$parametros);
+            if($this->conexion->n > 0 and $this->conexion->id > 0){
+
+                $resultado = $this->obtenerpersona($this->conexion->id);
+                $array = array("mensaje"=>"se ha registrado la persona correctamente","valores"=>$resultado);
+                return $array;
+            }else{
+                $array = array("mensaje"=>"hubo un problema al registrar la persona","valores"=>"");
+                return $array;
+            }
+        }else{
+            $array = array("mensaje"=>"existe al menos un campo obligatorio que no se ha enviado","valores"=>"");
+                return $array;
+        }
+    }
+
 }
-
-
-
-
-
-}
-
+?>
 
     
 
