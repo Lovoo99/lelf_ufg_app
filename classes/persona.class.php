@@ -147,11 +147,3 @@ if ($bandera_validacion === 0){
 
 }
 ?>
-
-    
-
-
-
-
-
-?>
